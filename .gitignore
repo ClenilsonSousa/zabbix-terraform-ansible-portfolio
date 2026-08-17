@@ -1,0 +1,12 @@
+# OS
+.DS_Store
+Thumbs.db
+*.Zone.Identifier
+
+# IDE
+.vscode/
+.idea/
+
+# Misc
+*.log
+*.tmp
