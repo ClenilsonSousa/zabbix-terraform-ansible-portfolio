@@ -3,7 +3,6 @@
 ![Status](https://img.shields.io/badge/Status-Produção-success)
 ![AWS](https://img.shields.io/badge/AWS-Cloud-orange?logo=amazonaws)
 ![Terraform](https://img.shields.io/badge/Terraform-IaC-7B42BC?logo=terraform)
-![OpenTofu](https://img.shields.io/badge/OpenTofu-Compatível-FFE100)
 ![Ansible](https://img.shields.io/badge/Ansible-Config_Management-EE0000?logo=ansible)
 ![Zabbix](https://img.shields.io/badge/Zabbix-7.4-D40000?logo=zabbix)
 ![Aurora](https://img.shields.io/badge/Aurora-MySQL_8.0-527FFF?logo=amazonaws)
@@ -81,7 +80,7 @@ Cross-cutting: Secrets Manager · SSM Session Manager · IAM Role · Ansible (de
 
 | Camada | Tecnologia |
 |--------|-----------|
-| **IaC** | Terraform 1.5+ / OpenTofu (AWS provider ~> 6.0) |
+| **IaC** | Terraform 1.5+ (AWS provider ~> 6.0) |
 | **Config Management** | Ansible (roles `zabbix-server` e `zabbix-agent`) |
 | **Monitoring** | Zabbix Server 7.4 |
 | **Web** | Apache + PHP (Zabbix Web UI) |
@@ -129,14 +128,14 @@ O deploy é 100% automatizado e acontece em **2 fases** orquestradas pelo `deplo
 ```
 
 **Etapas do `deploy.sh`:**
-1. **Terraform/OpenTofu** cria a infraestrutura (VPC, ALB, WAF, EC2, Aurora, IAM, DNS)
+1. **Terraform** cria a infraestrutura (VPC, ALB, WAF, EC2, Aurora, IAM, DNS)
 2. Gera o **inventário Ansible** dinamicamente a partir dos outputs do Terraform
 3. Aguarda a instância ficar **online no SSM**
 4. **Ansible** conecta via túnel SSH sobre SSM e instala/configura: Zabbix Server 7.4, Zabbix Web (Apache + PHP) e Zabbix Agent2
 5. Valida o acesso web e exibe as informações de acesso
 
 **Pré-requisitos:**
-- Terraform ou OpenTofu
+- Terraform
 - Ansible
 - AWS CLI configurado
 - Chave SSH (`terraform/keypair/hmg_zabbix`)
